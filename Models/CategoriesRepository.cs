@@ -41,7 +41,7 @@
             {
                 return;
             }
-            Category? categoryToUpdate = GetCategoryById(categoryId);
+            Category? categoryToUpdate = _categories.FirstOrDefault(x => x.CategoryId == categoryId);
             if (categoryToUpdate != null)
             {
                 categoryToUpdate.Name = category.Name;
@@ -50,10 +50,10 @@
         }
         public static void deleteCategory(int categoryId)
         {
-            Category? category = _categories.FirstOrDefault(x => x.CategoryId == categoryId);
-            if (category != null)
+            Category? categoryToDelete = _categories.FirstOrDefault(x => x.CategoryId == categoryId);
+            if (categoryToDelete != null)
             {
-                _categories.Remove(category);
+                _categories.Remove(categoryToDelete);
             }
         }
     }
