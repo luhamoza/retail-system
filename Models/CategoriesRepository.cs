@@ -11,7 +11,7 @@
 
         public static void AddCategory(Category category)
         {
-            var maxId = _categories.Max(c => c.CategoryId);
+            var maxId = _categories.Max(x => x.CategoryId);
             category.CategoryId = maxId + 1;
             _categories.Add(category);
         }
@@ -35,7 +35,7 @@
                 return null;
             }
         }
-        public static void updateCategory(Category category, int categoryId)
+        public static void UpdateCategory(Category category, int categoryId)
         {
             if (categoryId != category.CategoryId)
             {
@@ -48,7 +48,8 @@
                 categoryToUpdate.Description = category.Description;
             }
         }
-        public static void deleteCategory(int categoryId)
+
+        public static void DeleteCategory(int categoryId)
         {
             Category? categoryToDelete = _categories.FirstOrDefault(x => x.CategoryId == categoryId);
             if (categoryToDelete != null)
