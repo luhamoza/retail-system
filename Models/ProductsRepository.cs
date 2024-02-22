@@ -4,12 +4,12 @@
     {
         private static List<Product> _products = new List<Product>()
         {
-            new Product { ProductId = 1, CategoryId = 1, Name = "Milk", Quantity = 10, Price = 2.99 },
-            new Product { ProductId = 2, CategoryId = 1, Name = "Cheese", Quantity = 20, Price = 3.99 },
-            new Product { ProductId = 3, CategoryId = 2, Name = "Bread", Quantity = 15, Price = 1.99 },
-            new Product { ProductId = 4, CategoryId = 2, Name = "Rolls", Quantity = 25, Price = 2.99 },
-            new Product { ProductId = 5, CategoryId = 3, Name = "Apples", Quantity = 30, Price = 0.99 },
-            new Product { ProductId = 6, CategoryId = 3, Name = "Oranges", Quantity = 35, Price = 1.99 },
+            new Product { ProductId = 1, CategoryId = 1, Name = "Milk", Quantity = 10, Price = 2 },
+            new Product { ProductId = 2, CategoryId = 1, Name = "Cheese", Quantity = 20, Price = 3 },
+            new Product { ProductId = 3, CategoryId = 2, Name = "Bread", Quantity = 15, Price = 1 },
+            new Product { ProductId = 4, CategoryId = 2, Name = "Rolls", Quantity = 25, Price = 2 },
+            new Product { ProductId = 5, CategoryId = 3, Name = "Apples", Quantity = 30, Price = 3 },
+            new Product { ProductId = 6, CategoryId = 3, Name = "Oranges", Quantity = 35, Price = 1 },
         };
 
         public static void AddProduct(Product product)
