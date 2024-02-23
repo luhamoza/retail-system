@@ -12,9 +12,14 @@
     <div class="mb-3">
         <label asp-for="Product.CategoryId" class="form-label">Category</label>
         <select asp-for="Product.CategoryId" class="form-control">
-            <option value="1">Dairy</option>
-            <option value="2">Bread</option>
-            <option value="3">Fruits</option>
+            <option>- Please selet -</option>
+            @if (Model.Categories != null && Model.Categories.Count() > 0)
+            {
+                @foreach (var category in Model.Categories)
+                {
+                    <option value="@category.CategoryId">@category.Name</option>
+                }
+            }
         </select>
         <span class="text-danger" asp-validation-for="Product.CategoryId"></span>
     </div>

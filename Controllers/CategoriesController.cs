@@ -25,6 +25,7 @@ namespace SuperMarketInventorySystem.Controllers
                 CategoriesRepository.UpdateCategory(category, category.CategoryId);
                 return RedirectToAction(nameof(Index));
             }
+            ViewBag.Action = "edit";
             return View(category);
         }
         public IActionResult Add()
@@ -41,6 +42,7 @@ namespace SuperMarketInventorySystem.Controllers
                 CategoriesRepository.AddCategory(category);
                 return RedirectToAction(nameof(Index));
             }
+            ViewBag.Action = "add";
             return View(category);
         }
         public IActionResult Delete(int categoryId)

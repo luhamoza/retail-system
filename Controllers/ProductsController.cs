@@ -43,7 +43,11 @@ namespace SuperMarketInventorySystem.Controllers
         {
             ViewBag.Action = "add";
 
-            return View("Add");
+            var productViewModel = new ProductViewModel
+            {
+                Categories = CategoriesRepository.GetCategories()
+            };
+            return View(productViewModel);
         }
         [HttpPost]
         public IActionResult Add(ProductViewModel productViewModel)
@@ -54,6 +58,7 @@ namespace SuperMarketInventorySystem.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewBag.Action = "add";
+            productViewModel.Categories = CategoriesRepository.GetCategories();
             return View(productViewModel);
         }
     }
