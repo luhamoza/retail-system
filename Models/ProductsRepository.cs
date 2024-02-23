@@ -14,8 +14,19 @@
 
         public static void AddProduct(Product product)
         {
-            var maxId = _products.Max(p => p.ProductId);
-            product.ProductId = maxId + 1;
+            if (product != null && product.ProductId > 0)
+            {
+                var maxId = _products.Max(p => p.ProductId);
+                product.ProductId = maxId + 1;
+            }
+            else
+            {
+                product.ProductId = 1;
+            }
+            if (product == null)
+            {
+                _products = new List<Product>();
+            }
             _products.Add(product);
         }
 
