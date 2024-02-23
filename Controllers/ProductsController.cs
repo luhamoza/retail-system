@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RetailInvetorySystem.Models;
+using RetailInvetorySystem.ViewModels;
 
 namespace SuperMarketInventorySystem.Controllers
 {
@@ -7,25 +8,31 @@ namespace SuperMarketInventorySystem.Controllers
     {
         public IActionResult Index()
         {
-            var products = ProductsRepository.GetProducts();
+            var products = ProductsRepository.GetProducts(loadCategory: true);
             return View(products);
         }
         public IActionResult Edit(int? id)
         {
             ViewBag.Action = "edit";
+            var productViewModel = new ProductViewModel
+            {
+                Product = ProductsRepository.GetProductById(id.HasValue ? id.Value : 0),
+                Categories = CategoriesRepository.GetCategories()
+            };
 
-            var product = ProductsRepository.GetProductById(id.HasValue ? id.Value : 0);
-            return View(product);
+            return View(productViewModel);
         }
         [HttpPost]
-        public IActionResult Edit(Product product)
+        public IActionResult Edit(ProductViewModel productViewModel)
         {
             if (ModelState.IsValid)
             {
-                ProductsRepository.UpdateProduct(product.ProductId, product);
+                ProductsRepository.UpdateProduct(productViewModel.Product.ProductId, productViewModel.Product);
                 return RedirectToAction(nameof(Index));
             }
-            return View(product);
+            ViewBag.Action = "edit";
+            productViewModel.Categories = CategoriesRepository.GetCategories();
+            return View(productViewModel);
         }
         public IActionResult Delete(int productId)
         {
@@ -35,17 +42,19 @@ namespace SuperMarketInventorySystem.Controllers
         public IActionResult Add()
         {
             ViewBag.Action = "add";
+
             return View("Add");
         }
         [HttpPost]
-        public IActionResult Add(Product product)
+        public IActionResult Add(ProductViewModel productViewModel)
         {
             if (ModelState.IsValid)
             {
-                ProductsRepository.AddProduct(product);
+                ProductsRepository.AddProduct(productViewModel.Product);
                 return RedirectToAction(nameof(Index));
             }
-            return View(product);
+            ViewBag.Action = "add";
+            return View(productViewModel);
         }
     }
 }

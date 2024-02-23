@@ -17,7 +17,9 @@ namespace RetailInvetorySystem.Models
         public int? Quantity { get; set; }
 
         [Required]
-        [Range(0, int.MaxValue)]
+        [Range(1, int.MaxValue)]
         public double? Price { get; set; }
+
+        public Category? Category { get; set; }
     }
 }

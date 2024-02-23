@@ -1,9 +1,10 @@
-﻿@model Product
+﻿@model ProductViewModel 
 @section Title{
     <h3>Edit Product</h3>
 }
-@if (Model != null)
+
+@if(Model !=null)   
 {
-  <p>Product Name: @Model.Name</p> 
-  <partial name="_Product" model="@Model" ></partial>
+    <p>Product Name: @Model.Product?.Name</p> 
 }
+<partial name="_Product" model="@Model" ></partial>
