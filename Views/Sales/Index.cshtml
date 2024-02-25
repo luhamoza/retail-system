@@ -1,0 +1,51 @@
+﻿@model SalesViewModel
+
+@section title {
+    <div class="row">
+        <div class="col-7"><h3>Cashier's Console</h3></div>
+        <div class="col-2"><label for="cashier">Cashier Name: </label></div>
+        <div class="col-3">
+           @*Display Cashier Name here*@ 
+        </div>
+    </div>
+}
+
+<br />
+<div class="row">
+    <div class="col-4">
+       @*category selection*@ 
+        <select asp-for="SelectedCategoryId" class="form-control">
+            <option>- Please selet -</option>
+            @if (Model.Categories != null && Model.Categories.Count() > 0)
+            {
+                @foreach (var category in Model.Categories)
+                {
+                    <option value="@category.CategoryId">@category.Name</option>
+                }
+            }
+        </select>
+       <br/>
+       <div id="productsPartial">
+           @*Product list*@
+       </div>
+       <br/>
+       <div>
+           @*Product details*@
+       </div>
+       @*Sales from*@
+    </div>
+    <div class="col">
+        @*List of transactions*@
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(function () {
+            // Handle category selection
+            $("#SelectedCategoryId").on("change", function () {
+                $("#productsPartial").load("/products/ProductsByCategoryPartial", {categoryId: $(this).val()});
+            })
+        })
+    </script>
+}

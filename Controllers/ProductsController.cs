@@ -61,5 +61,10 @@ namespace SuperMarketInventorySystem.Controllers
             productViewModel.Categories = CategoriesRepository.GetCategories();
             return View(productViewModel);
         }
+        public IActionResult ProductsByCategoryPartial(int categoryId)
+        {
+            var products = ProductsRepository.GetProductsByCategory(categoryId);
+            return PartialView("_Products", products);
+        }
     }
 }

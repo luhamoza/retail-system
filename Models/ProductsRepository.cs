@@ -1,4 +1,5 @@
-﻿namespace RetailInvetorySystem.Models
+﻿
+namespace RetailInvetorySystem.Models
 {
     public class ProductsRepository
     {
@@ -102,5 +103,18 @@
             }
         }
 
+        public static List<Product> GetProductsByCategory(int categoryId)
+        {
+            var products = _products.Where(p => p.CategoryId == categoryId);
+            if (products != null)
+            {
+                return products.ToList();
+            }
+            else
+            {
+                return new List<Product>();
+            }
+
+        }
     }
 }
