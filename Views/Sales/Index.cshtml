@@ -46,6 +46,12 @@
             $("#SelectedCategoryId").on("change", function () {
                 $("#productsPartial").load("/products/ProductsByCategoryPartial", {categoryId: $(this).val()});
             })
+            // Handle product selectiom
+            $("#productsPartial").on("click", ".product-row", function () {
+                // hightlight the selected product row
+                $(".product-row").removeClass("highlight");
+                $(this).addClass("highlight");
+            })
         })
     </script>
 }
