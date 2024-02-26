@@ -1,4 +1,5 @@
 ﻿
+
 namespace RetailInvetorySystem.Models
 {
     public class ProductsRepository

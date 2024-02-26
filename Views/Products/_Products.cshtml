@@ -6,26 +6,16 @@
         <thead>
             <tr>
                 <th scope="col">Product Name</th>
-                <th scope="col">Price</th>
                 <th scope="col">Quantity</th>
-                @* <th scope="col">Category</th> *@
-                @* <th scope="col">Actions</th> *@
             </tr>
         </thead>
         <tbody>
             @foreach (var product in Model)
             {
-                <tr class="product-row">
+                <tr class="product-row" product-id="@product.ProductId">
                     <td>@product.Name</td>
-                    <td>@product.Price</td>
                     <td>@product.Quantity</td>
-                    @* <td>@product?.Category?.Name</td> *@
-@*                     <td>
-                        <a href="@Url.Action("Edit", "Products", new { id = product.ProductId })">Edit</a> |
-                        <a href="@Url.Action("Details", "Products", new { id = product.ProductId })">Details</a> |
-                        <a href="@Url.Action("Delete", "Products", new { id = product.ProductId })">Delete</a>
-                    </td>
- *@                </tr>
+                 </tr>
             }
         </tbody>
     </table>

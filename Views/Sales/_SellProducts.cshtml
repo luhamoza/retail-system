@@ -1,0 +1,20 @@
+﻿@model Product
+
+@if(Model != null)
+{
+    <form>
+        <div class="mb-3">
+            <label asp-for="Name" class="form-label"></label>
+            <input type="text" class="form-control" asp-for="Name" readonly >
+        </div>
+        <div class="mb-3">
+            <label asp-for="Price" class="form-label">Price</label>
+            <input type="text" class="form-control" asp-for="Price" readonly value="@(string.Format("{0:c}",Model?.Price))"/>
+        </div>
+    </form>
+}
+else
+{
+    <p>No products found</p>
+}
+

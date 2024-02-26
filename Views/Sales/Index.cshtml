@@ -13,6 +13,7 @@
 <br />
 <div class="row">
     <div class="col-4">
+        <div class="text-danger" asp-validation-summary="All"></div>
        @*category selection*@ 
         <select asp-for="SelectedCategoryId" class="form-control">
             <option>- Please selet -</option>
@@ -25,14 +26,25 @@
             }
         </select>
        <br/>
-       <div id="productsPartial">
+       <div id="product-list-partial">
            @*Product list*@
        </div>
        <br/>
-       <div>
+       <div id="product-details-partial">
            @*Product details*@
        </div>
-       @*Sales from*@
+       @*Sales form*@
+       <form method="post" asp-controller="Sales" asp-action="Sell" id="formSale">
+           <input asp-for="SelectedProductId" type="hidden"/>
+           <div class="form-group">
+               <label asp-for="QuantityToSell"></label>
+               <input asp-for="QuantityToSell" class="form-control" type="number" min="1" />
+           </div>
+           <br/>
+           <div class="form-group">
+                <input type="submit" class="btn btn-primary" value="Submit"/>
+           </div>
+       </form>
     </div>
     <div class="col">
         @*List of transactions*@
@@ -42,16 +54,41 @@
 @section Scripts{
     <script>
         $(function () {
+            // initialize the form 
+            $("#formSale").hide();
+            $("#QuantityToSell").val("");
+            // load the product if the category already selected
+            var selectedCategoryId = $("#SelectedCategoryId").val();
+            if (selectedCategoryId > 0)  {
+                loadProducts(selectedCategoryId)
+            }
             // Handle category selection
             $("#SelectedCategoryId").on("change", function () {
-                $("#productsPartial").load("/products/ProductsByCategoryPartial", {categoryId: $(this).val()});
+                loadProducts($(this).val());
             })
             // Handle product selectiom
-            $("#productsPartial").on("click", ".product-row", function () {
+            $("#product-list-partial").on("click", ".product-row", function () {
                 // hightlight the selected product row
                 $(".product-row").removeClass("highlight");
                 $(this).addClass("highlight");
+                // get the "product-id" attribute from the selected row
+                var productId= $(this).attr("product-id");
+                // load the product details
+                $("#product-details-partial").load("/sales/SalesProductPartial", {productId: productId});
+                if (productId != 0) {
+                    $("#SelectedProductId").val(productId);
+                    $("#formSale").show();
+                }
+                else {
+                    $("#SelectedProductId").val("");
+                    $("#formSale").hide();
+                }
             })
         })
+        function loadProducts(categoryId) {
+            $("#product-list-partial").load("/products/ProductsByCategoryPartial", {categoryId:categoryId });
+                $("#product-details-partial").html("");
+                $("#formSale").hide();
+        }
     </script>
 }
