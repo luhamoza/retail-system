@@ -1,14 +1,14 @@
-# SuperMarketInventorySystem
+# Retail Shop Inventory System
 
-SuperMarketInventorySystem is a C# project that simulates an inventory system for a supermarket.
+Retail Shop Inventory System is a ASP.Net MVC project that simulates an inventory system for a retail shop.
 
 ## Models
 
 The system has two main models:
 
-1. `Category`: Represents a category of products in the supermarket. Each category has a `CategoryId`, `Name`, and `Description`.
+1. `Category`: Represents a category of products in the retail shop. Each category has a `CategoryId`, `Name`, and `Description`.
 
-2. `Product`: Represents a product in the supermarket. Each product is associated with a `Category`.
+2. `Product`: Represents a product in the retail. Each product is associated with a `Category`.
 
 ## Repositories
 
@@ -29,7 +29,3 @@ To get a local copy up and running, follow these steps:
 ## Contributing
 
 Contributions are welcome. Please open an issue first to discuss what you would like to change.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
