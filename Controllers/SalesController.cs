@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RetailInvetorySystem.Models;
+using RetailInvetorySystem.ViewModels;
 
 namespace RetailInvetorySystem.Controllers
 {
